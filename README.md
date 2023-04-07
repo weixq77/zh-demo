@@ -1,4 +1,7 @@
 # zh-demo
+仿知乎专栏页面
+
+vue3.0、ts、router、vuex、less、bootstrap
 
 ## Project setup
 ```

@@ -1,30 +1,46 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <global-header :user="user" />
+  <div class="content py-3">
+    <router-view />
   </div>
-  <router-view />
+  <footer class="text-center py-3 text-secondary bg-light mt-6">
+    <small>
+      <ul class="list-inline mb-0">
+        <li class="list-inline-item">纸糊专栏</li>
+        <li class="list-inline-item">课程</li>
+        <li class="list-inline-item">文档</li>
+        <li class="list-inline-item">联系</li>
+        <li class="list-inline-item">更多</li>
+      </ul>
+    </small>
+  </footer>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+  import { defineComponent, computed } from 'vue';
+  import { useStore } from 'vuex';
+  import { GlobalDataProps } from './store';
+  import GlobalHeader from '@/components/GlobalHeader.vue';
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+  export default defineComponent({
+    name: 'App',
+    components: {
+      GlobalHeader
+    },
+    setup(props) {
+      const store = useStore<GlobalDataProps>();
+      const currentuser = computed(() => store.state.user);
+      return {
+        user: currentuser
+      };
     }
+  });
+</script>
+
+<style lang="less">
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-}
 </style>
