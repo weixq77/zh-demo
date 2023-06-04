@@ -5,4 +5,6 @@ import store from './store';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import './mock'; // 引入mock数据
+
 createApp(App).use(store).use(router).mount('#app');

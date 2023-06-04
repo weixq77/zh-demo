@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent, computed } from 'vue';
+  import { defineComponent, computed, onMounted } from 'vue';
   import { useRouter } from 'vue-router';
   import { useStore } from 'vuex';
   import { GlobalDataProps } from '../store';
@@ -22,6 +22,7 @@
     setup() {
       const store = useStore<GlobalDataProps>();
       const router = useRouter();
+
       // 专栏列表
       const list = computed(() => store.state.columns);
 
@@ -29,6 +30,11 @@
       const jump = () => {
         router.push('/create');
       };
+
+      onMounted(() => {
+        // 获取专栏列表数据
+        store.dispatch('fetchColumns');
+      });
 
       return {
         list,

@@ -55,7 +55,7 @@
           const { columnId } = store.state.user;
           if (columnId) {
             const newPost: PostProps = {
-              id: new Date().getTime(),
+              _id: `${new Date().getTime()}`,
               title: titleVal.value,
               content: contentVal.value,
               columnId: columnId,
